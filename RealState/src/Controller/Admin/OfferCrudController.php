@@ -1,0 +1,38 @@
+<?php
+
+namespace App\Controller\Admin;
+
+use App\Entity\Offer;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+
+class OfferCrudController extends AbstractCrudController
+{
+    public static function getEntityFqcn(): string
+    {
+        return Offer::class;
+    }
+
+    public function configureFields(string $pageName): iterable
+    {
+        return [
+            AssociationField::new('house'),
+
+            AssociationField::new('creator')->onlyOnIndex(),
+            AssociationField::new('applicant')->onlyOnForms(),
+
+            ChoiceField::new('status')
+                ->setChoices([
+                    'Pending' => 'pending',
+                    'Approved' => 'approved',
+                    'Rejected' => 'rejected',
+                ])
+                ->renderExpanded(false) // dropdown
+                ->renderAsNativeWidget(),
+
+            DateTimeField::new('createdAt')->onlyOnIndex(),
+        ];
+    }
+}
