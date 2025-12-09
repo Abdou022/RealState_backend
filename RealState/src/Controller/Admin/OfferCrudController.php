@@ -21,7 +21,7 @@ class OfferCrudController extends AbstractCrudController
             AssociationField::new('house'),
 
             AssociationField::new('creator')->onlyOnIndex(),
-            AssociationField::new('applicant')->onlyOnForms(),
+            AssociationField::new('applicant'),
 
             ChoiceField::new('status')
                 ->setChoices([
