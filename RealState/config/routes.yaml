@@ -10,5 +10,86 @@
 api_login_check:
     path: /api/login_check
 
+
+# User APIs
+user_profile:
+    path: /users/{id}
+    controller: App\Controller\UserController::getUserProfile
+    methods: [GET]
+
+user_register:
+    path: /users/register
+    controller: App\Controller\UserController::register
+    methods: [POST]    
+
+user_login:
+    path: /users/login
+    controller: App\Controller\UserController::login
+    methods: [POST] 
+
+user_update:
+    path: /users/{id}
+    controller: App\Controller\UserController::updateProfile
+    methods: [PUT]    
+
+# House APIs
+house_create:
+    path: /houses
+    controller: App\Controller\HouseController::createHouse
+    methods: [POST]
+
+house_list:
+    path: /houses
+    controller: App\Controller\HouseController::getAllHouses
+    methods: [GET]
+
+best_offers:
+    path: /houses/best
+    controller: App\Controller\HouseController::getLastHouses
+    methods: [GET]
+
+    
+house_details:
+    path: /houses/{id}
+    controller: App\Controller\HouseController::getHouseDetails
+    methods: [GET]
+
+house_update:
+    path: /houses/{id}
+    controller: App\Controller\HouseController::updateHouse
+    methods: [POST]
+
+house_delete:
+    path: /houses/{id}
+    controller: App\Controller\HouseController::deleteHouse
+    methods: [DELETE]
+
+# Offer APIs
+offer_create:
+    path: /offers
+    controller: App\Controller\OfferController::createOffer
+    methods: [POST]
+
+offer_received:
+    path: /offers/received/{ownerId}
+    controller: App\Controller\OfferController::receivedOffers
+    methods: [GET]
+
+offer_sent:
+    path: /offers/sent/{applicantId}
+    controller: App\Controller\OfferController::sentOffers
+    methods: [GET]
+
+offer_accept:
+    path: /offers/{offerId}/accept
+    controller: App\Controller\OfferController::acceptOffer
+    methods: [PUT]
+
+offer_reject:
+    path: /offers/{offerId}/reject
+    controller: App\Controller\OfferController::rejectOffer
+    methods: [PUT]
+    
+
 controllers:
     resource: routing.controllers

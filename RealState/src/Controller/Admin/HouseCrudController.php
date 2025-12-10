@@ -11,6 +11,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use Symfony\Component\HttpFoundation\RequestStack;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+
 
 class HouseCrudController extends AbstractCrudController
 {
@@ -31,6 +33,7 @@ class HouseCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
+            IdField::new('id')->onlyOnIndex(),
             TextField::new('title'),
             TextField::new('description'),
             NumberField::new('price'),
